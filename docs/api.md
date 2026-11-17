@@ -30,25 +30,25 @@ lib/LoRaMeshUI/
 
 | Archivo | Propósito |
 | :--- | :--- |
-| [library.json](./lib/LoRaMeshUI/library.json) | Metadatos de la librería `LoRaMeshUI`, dependencia `U8g2` y declaración de ejemplos. |
-| [SystemTypes.h](./lib/LoRaMeshUI/src/SystemTypes.h) | Contrato de estructuras compartidas (`SeismicTelemetry_t` y `MeshNetworkStatus_t`) y enumeraciones de estados/pantallas. |
-| [LoRaMeshUIIcons.h](./lib/LoRaMeshUI/src/LoRaMeshUIIcons.h) | Constantes geométricas del tema ($128 \times 64\text{ px}$) y bitmaps XBM (`↑`, `↓`, `⇄`, alerta). |
-| [LoRaMeshUIWidgets.h](./lib/LoRaMeshUI/src/LoRaMeshUIWidgets.h) | **Capa de Estilos / Widgets reutilizables**: barra superior estilo Meshtastic, barra de paginación inferior, filas de sensores, barras de umbral, insignias de nodos (`[N1:OK]`) y banners invertidos. |
-| [LoRaMeshUIScreens.h](./lib/LoRaMeshUI/src/LoRaMeshUIScreens.h) | **Plantillas de las 5 pantallas** armadas con los widgets de `LoRaMeshUIWidgets`. |
-| [LoRaMeshUI.h](./lib/LoRaMeshUI/src/LoRaMeshUI.h) | **API Pública principal**: clase `LoRaMeshUI` que administra el ciclo de refresco no bloqueante ($10\text{ FPS}$), arbitraje I²C, botón en `GPIO 7` y parpadeo por hardware a $4\text{ Hz}$. |
-| [FiveViewsCarouselDemo.cpp](./lib/LoRaMeshUI/examples/01_FiveViewsCarouselDemo/FiveViewsCarouselDemo.cpp) | **Demo controlado por botón (`GPIO 7 -> GND`)**: avanza manualmente por las 5 vistas con cada pulsación usando [MockDataGenerator.h](./lib/LoRaMeshUI/examples/01_FiveViewsCarouselDemo/MockDataGenerator.h). |
+| [library.json](../lib/LoRaMeshUI/library.json) | Metadatos de la librería `LoRaMeshUI`, dependencia `U8g2` y declaración de ejemplos. |
+| [SystemTypes.h](../lib/LoRaMeshUI/src/SystemTypes.h) | Contrato de estructuras compartidas (`SeismicTelemetry_t` y `MeshNetworkStatus_t`) y enumeraciones de estados/pantallas. |
+| [LoRaMeshUIIcons.h](../lib/LoRaMeshUI/src/LoRaMeshUIIcons.h) | Constantes geométricas del tema ($128 \times 64\text{ px}$) y bitmaps XBM (`↑`, `↓`, `⇄`, alerta). |
+| [LoRaMeshUIWidgets.h](../lib/LoRaMeshUI/src/LoRaMeshUIWidgets.h) | **Capa de Estilos / Widgets reutilizables**: barra superior estilo Meshtastic, barra de paginación inferior, filas de sensores, barras de umbral, insignias de nodos (`[N1:OK]`) y banners invertidos. |
+| [LoRaMeshUIScreens.h](../lib/LoRaMeshUI/src/LoRaMeshUIScreens.h) | **Plantillas de las 5 pantallas** armadas con los widgets de `LoRaMeshUIWidgets`. |
+| [LoRaMeshUI.h](../lib/LoRaMeshUI/src/LoRaMeshUI.h) | **API Pública principal**: clase `LoRaMeshUI` que administra el ciclo de refresco no bloqueante ($10\text{ FPS}$), arbitraje I²C, botón en `GPIO 7` y parpadeo por hardware a $4\text{ Hz}$. |
+| [FiveViewsCarouselDemo.cpp](../lib/LoRaMeshUI/examples/01_FiveViewsCarouselDemo/FiveViewsCarouselDemo.cpp) | **Demo controlado por botón (`GPIO 7 -> GND`)**: avanza manualmente por las 5 vistas con cada pulsación usando [MockDataGenerator.h](../lib/LoRaMeshUI/examples/01_FiveViewsCarouselDemo/MockDataGenerator.h). |
 
 ### 1.1 Cómo Compilar y Grabar el Ejemplo vs. Producción (`platformio.ini`)
 
-En [platformio.ini](./platformio.ini) se han definido dos entornos independientes mediante `build_src_filter` para poder compilar y flashear el ejemplo directamente al `ESP32-C3 Super Mini` **sin modificar ni ensuciar [src/main.cpp](./src/main.cpp)**:
+En [platformio.ini](../platformio.ini) se han definido dos entornos independientes mediante `build_src_filter` para poder compilar y flashear el ejemplo directamente al `ESP32-C3 Super Mini` **sin modificar ni ensuciar [src/main.cpp](../src/main.cpp)**:
 
 * **Entorno de Demostración (`esp32-c3-demo-ui` - Activo por defecto):**
-  Compila únicamente [FiveViewsCarouselDemo.cpp](./lib/LoRaMeshUI/examples/01_FiveViewsCarouselDemo/FiveViewsCarouselDemo.cpp) mostrando las 5 vistas controladas por cada pulsación en `GPIO 7 -> GND`:
+  Compila únicamente [FiveViewsCarouselDemo.cpp](../lib/LoRaMeshUI/examples/01_FiveViewsCarouselDemo/FiveViewsCarouselDemo.cpp) mostrando las 5 vistas controladas por cada pulsación en `GPIO 7 -> GND`:
   ```bash
   ~/.platformio/penv/bin/pio run -e esp32-c3-demo-ui -t upload
   ```
 * **Entorno de Producción (`esp32-c3-prod`):**
-  Compila únicamente [src/main.cpp](./src/main.cpp) y `lib/LoRaMeshUI/src/` (ignorando por completo la carpeta `examples/`):
+  Compila únicamente [src/main.cpp](../src/main.cpp) y `lib/LoRaMeshUI/src/` (ignorando por completo la carpeta `examples/`):
   ```bash
   ~/.platformio/penv/bin/pio run -e esp32-c3-prod -t upload
   ```
@@ -208,7 +208,7 @@ ui.clearAlerts();
 
 ## 6. Cómo Crear o Personalizar Vistas con los Widgets del Mini-Framework
 
-Si deseas personalizar el diseño de alguna pantalla o crear una vista propia manteniendo el estilo visual de Meshtastic, puedes usar los componentes de [`LoRaMeshUIWidgets`](./lib/LoRaMeshUI/src/LoRaMeshUIWidgets.h) y registrarla con `ui.setCustomScreenRenderer(...)`:
+Si deseas personalizar el diseño de alguna pantalla o crear una vista propia manteniendo el estilo visual de Meshtastic, puedes usar los componentes de [`LoRaMeshUIWidgets`](../lib/LoRaMeshUI/src/LoRaMeshUIWidgets.h) y registrarla con `ui.setCustomScreenRenderer(...)`:
 
 ```cpp
 #include <LoRaMeshUI.h>
@@ -237,40 +237,3 @@ void miVistaPersonalizada(U8G2 &u8g2,
 // Reemplaza la Vista 2 por tu vista personalizada:
 ui.setCustomScreenRenderer(SCREEN_SEISMIC_MONITOR, miVistaPersonalizada);
 ```
-
----
-
-## 7. Tests Unitarios Nativos en PC (`[env:native]`)
-
-El proyecto incluye una suite de pruebas unitarias con **Unity** que ejecuta la lógica de `LoRaMeshUI` directamente en la PC (`platform = native`, compilado con `g++`) sin necesidad de conectar el `ESP32-C3` ni la pantalla física `SSD1306`.
-
-### 7.1 Estructura de Pruebas y Mocks
-
-| Ruta | Propósito |
-| :--- | :--- |
-| [platformio.ini](./platformio.ini) | Define el entorno `[env:native]` (`test_framework = unity`, `lib_ignore = U8g2`, `-I test/mocks`). |
-| [MockEnv.h](./test/mocks/MockEnv.h) | Reloj `millis()` controlable, niveles de GPIO simulados y espías de `Wire` / `U8g2` (`sendBufferCount`, comandos `sendF`, textos e iconos dibujados). |
-| [Arduino.h](./test/mocks/Arduino.h), [Wire.h](./test/mocks/Wire.h), [U8g2lib.h](./test/mocks/U8g2lib.h) | *Stubs* ligeros usados únicamente durante la compilación de `[env:native]` (no afectan los compilados del `ESP32-C3`). |
-| [test_loramesh_ui.cpp](./test/test_loramesh_ui/test_loramesh_ui.cpp) | Suite con 12 casos de prueba sobre la API pública y reglas críticas del framework. |
-
-### 7.2 Casos Verificados (`12` tests)
-
-1. `test_begin_initializes_i2c_and_renders_home`: Inicialización de I²C en `GPIO 8/9` a `400 kHz`, comando `0x0a6` y renderizado inicial de `SCREEN_MESH_HOME`.
-2. `test_begin_respects_initWire_false`: Verifica que `initWire = false` omite `Wire.begin()` cuando otro módulo (ej. `MPU6050`) ya inicializó el bus.
-3. `test_sensor_telemetry_auto_triggers_pre_alert`: Disparo automático hacia `SCREEN_PRE_ALERT` al activarse `local_trigger`.
-4. `test_network_status_auto_triggers_critical_alarm`: Disparo automático hacia `SCREEN_CRITICAL_ALARM` al activarse `global_alarm_active`.
-5. `test_critical_alarm_0x02_has_priority_over_pre_alert_0x01`: Garantiza que `0x01` nunca degrade ni interrumpa una alerta `0x02` en curso.
-6. `test_clear_alerts_restores_saved_screen_and_normal_polarity`: Restaura la vista normal previa, limpia banderas de alarma y envía `0x0a6`.
-7. `test_manual_navigation_respects_allow_all_screens_flag`: Valida rotación restringida a 3 vistas en producción (`false`) vs. 5 vistas en demo (`true`).
-8. `test_button_debounce_filters_glitches_and_advances_on_stable_press`: Verifica que el antirrebote en `GPIO 7` (`45 ms`) ignore pulsos cortos de ruido y avance una sola pantalla en pulsaciones estables.
-9. `test_i2c_burst_arbitration_blocks_normal_redraw_but_allows_critical_transition`: Valida que `pauseI2CForSensorBurst(500)` bloquee redibujos normales durante la ráfaga del `MPU6050`, permitiendo únicamente transiciones críticas.
-10. `test_hardware_strobe_4hz_toggles_0xA7_0xA6_and_resets_on_exit`: Comprueba la alternancia `0x0a7` / `0x0a6` cada `125 ms` en la Vista 5 y el retorno a `0x0a6` al salir.
-11. `test_packet_rx_tx_updates_counts_active_nodes_and_expires_radio_icon`: Comprueba el conteo de bits en `online_nodes_mask`, contadores `RX`/`TX` y la expiración del ícono de radio a `RADIO_IDLE` tras `800 ms`.
-12. `test_custom_screen_renderer_hook`: Verifica el registro y renderizado de vistas personalizadas con `setCustomScreenRenderer()`.
-
-### 7.3 Cómo Ejecutar los Tests
-
-```bash
-~/.platformio/penv/bin/pio test -e native -v
-```
-

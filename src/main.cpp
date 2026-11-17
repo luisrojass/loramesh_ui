@@ -10,7 +10,7 @@
  * de sensores (MPU6050 + Geófono) y del módem LoRa Mesh (RAK3172).
  *
  * Nota: Para probar el carrusel de demostración con datos simulados sin modificar
- * este archivo, compila y sube el entorno `esp32-c3-demo-ui` (ver API_UI.md).
+ * este archivo, compila y sube el entorno `esp32-c3-demo-ui` (ver docs/api.md).
  */
 
 LoRaMeshUI ui;
